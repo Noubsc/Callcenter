@@ -65,7 +65,7 @@ const FirebaseLogin = ({ ...others }) => {
 
 	const Logins = () =>
 	{
-		
+        	
 		const header= {
 			'Content-Type': 'application/json',
 			'Authorization': 'dba123456',
@@ -75,14 +75,15 @@ const FirebaseLogin = ({ ...others }) => {
 		axios.get(url.concat('default'),{headers:header})
 		 .then(res => {
 			  const result =  res;
-			  if(result.data.status === 1 && result.data.isActive === true){
+			  if(result.data.status === 1 && result.data.data.isActive === true){
 				localStorage.setItem('users', JSON.stringify(result.data.data));
 				console.log('Users',result.data.data)
 				navigate('/dashboard/default', { replace: true });				
 			  }
 			  else{
-				  // this.setState({isdialog : false});
-				   alert('ທຸລະກຳບໍ່ສຳເລັດ!.');
+				   
+                // setErrors({ submit: res.data.data.message });
+				    alert('ທຸລະກຳບໍ່ສຳເລັດ!.');
    
 			  }
 			console.log('Login',res);
@@ -174,9 +175,10 @@ const FirebaseLogin = ({ ...others }) => {
                             console.log('log', values); // eslint-disable-next-line no-console
                             if (values.email === 'noultm@gmail.com'&& values.password === '123456'){
 								
-								setStatus({ success: true });
-								setSubmitting(false);
+								
 								Logins();
+                                setStatus({ success: true });
+								setSubmitting(false);
 							
 							
 							}
