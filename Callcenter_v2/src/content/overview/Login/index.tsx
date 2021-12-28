@@ -8,9 +8,10 @@ import {
   } from '@mui/material';
 
 import React, {useState} from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Globalstyle } from 'src/fonts/GlobalStyle';
+import axios from 'axios';
 
 
 
@@ -86,23 +87,48 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
   );
   
   function Login() {
-
+  const navigate = useNavigate();
     
-  const [User,setUser] = useState(undefined);
-  const [Pwd, setPwd] = useState(undefined);
-
+  const [User, setUser] = useState("sengkham");
+  const [Pwd, setPwd] = useState("123");
+  const [Error, setError] = useState("");
+  const url = 'https://waiwa-api.laoapps.com/api/v1/callcenter/';
 
     const handleISubmit = (e) =>{
-      e.preventDefault();      
-      const data = {
+      
+      if(User ==="sengkham" && Pwd === "123"){
 
-          id: new Date(),
-          User,
-          Pwd
+        const header= {
+          'Content-Type': 'application/json',
+          'Authorization': 'dba123456',
+          'Token' : 'c0bab0a1-8f1e-4735-95d2-ec362d8ce407'
+        }   
+    
+        axios.get(url.concat('default'),{headers:header})
+         .then(res => {
+            const result =  res;
+            if(result.data.status === 1 && result.data.data.isActive === true){
+            localStorage.setItem('users', JSON.stringify(result.data.data));
+            console.log('Users',result.data.data)
+            navigate('/dashboards/crypto', { replace: true });				
+            }
+            else{
+               
+                    // setErrors({ submit: res.data.data.message });
+                    setError(res.data.data.message);
+       
+            }
+          console.log('Login',res);
+         });
+        
 
       }
-  
-      console.log("test", data);
+      else{
+        setError("* Please your User and Password again.");
+
+      }
+     // console.log(`user : ${ User} and ${Pwd}`);
+     
     }
    
   
@@ -126,8 +152,8 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
             >
              ລະບົບຈັດການໜ້າວຽກການຂົນສົ່ງຂອງ Rider
             </TypographyH2>
-            <form  onSubmit={handleISubmit} >
-            <Box
+      
+            <Box 
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -141,11 +167,11 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
                     id="usr"
                     label="ຊື່ຜູ້ໃຊ້"
                     placeholder='ຊື່ຜູ້ໃຊ້້'
-                    focused                    
-                    required   
-                    helperText = {"Invalid User"}  
+                    focused       
+                    value={User}            
+                    required       
                     error = {false}
-                    ref={(input) => setUser(input)}
+                    onChange= {(e) => setUser(e.target.value)}
                    
                     />
                     <br/>
@@ -153,17 +179,29 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
                     color='secondary'                   
                     id="pwd"
                     label="ລະຫັດ"
-                    placeholder="ລະຫັດ"  
+                    placeholder="ລະຫັດ" 
+                    type="password"
+                    value={Pwd}                 
                     focused  
-                    required 
-                    helperText = {"Invalid Password"}  
+                    required                     
                     error = {false}     
-                    ref={(input) => setPwd(input)}   
+                   onChange = {(e) => setPwd(e.target.value)}  
                     />
                 </div>
                 <br/>
+                <TypographyH2
+              sx={{ lineHeight: 1.5, pb: 4 }}
+              variant="h4"
+              color="red"
+              fontWeight="normal"    
+               
+             
+            >
+             {Error}
+            </TypographyH2>
                 <Button
-              type="submit"
+                type='button'
+                onClick={handleISubmit}
               /*
               component={RouterLink}
               to="/dashboards/crypto"
@@ -175,7 +213,7 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
               ເຂົ້າລະບົບ
             </Button>
                 </Box>
-                </form>
+              
            
 
             
