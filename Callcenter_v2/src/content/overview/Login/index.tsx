@@ -7,11 +7,12 @@ import {
     TextField
   } from '@mui/material';
 
-
-  
-  import { Link as RouterLink } from 'react-router-dom';
-   import { styled } from '@mui/material/styles';
+import React, {useState} from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 import { Globalstyle } from 'src/fonts/GlobalStyle';
+
+
 
  
  
@@ -85,6 +86,25 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
   );
   
   function Login() {
+
+    
+  const [User,setUser] = useState(undefined);
+  const [Pwd, setPwd] = useState(undefined);
+
+
+    const handleISubmit = (e) =>{
+      e.preventDefault();      
+      const data = {
+
+          id: new Date(),
+          User,
+          Pwd
+
+      }
+  
+      console.log("test", data);
+    }
+   
   
     return (
     
@@ -106,7 +126,7 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
             >
              ລະບົບຈັດການໜ້າວຽກການຂົນສົ່ງຂອງ Rider
             </TypographyH2>
-
+            <form  onSubmit={handleISubmit} >
             <Box
                 component="form"
                 sx={{
@@ -121,7 +141,12 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
                     id="usr"
                     label="ຊື່ຜູ້ໃຊ້"
                     placeholder='ຊື່ຜູ້ໃຊ້້'
-                    focused 
+                    focused                    
+                    required   
+                    helperText = {"Invalid User"}  
+                    error = {false}
+                    ref={(input) => setUser(input)}
+                   
                     />
                     <br/>
                     <TextField    
@@ -129,23 +154,31 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
                     id="pwd"
                     label="ລະຫັດ"
                     placeholder="ລະຫັດ"  
-                    focused                  
+                    focused  
+                    required 
+                    helperText = {"Invalid Password"}  
+                    error = {false}     
+                    ref={(input) => setPwd(input)}   
                     />
                 </div>
-               
-                
-                </Box>
-
-            <br/>
-
-            <Button
+                <br/>
+                <Button
+              type="submit"
+              /*
               component={RouterLink}
               to="/dashboards/crypto"
               size="large"
+              
+              */
               variant="contained"
             >
               ເຂົ້າລະບົບ
             </Button>
+                </Box>
+                </form>
+           
+
+            
             
           
           </Grid>
@@ -155,4 +188,6 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
   }
   
   export default Login;
+  
+
   
