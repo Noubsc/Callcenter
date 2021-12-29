@@ -11,11 +11,10 @@ import { SidebarProvider } from './contexts/SidebarContext';
 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import DataReducer  from './reducer/dataReducer';
+import rootReducer    from './reducer';
 
 
-const store = createStore(DataReducer);
-
+const store = createStore(rootReducer);
 
 
 

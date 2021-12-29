@@ -1,18 +1,17 @@
 import { ADD_TO_USER } from './dataAction';
 
 const initialState={
-    users:[]
+    user:[]
 }
 
-const DataReducer = (state = initialState, action) => {
+export function DataReducer(state = initialState, action){
 
     switch(action.type){
 
         case ADD_TO_USER : 
-        const updateState =[...state.users,action.payload];
+        const updateState =[...state.user,action.payload];
 
                 return{
-
                     ...state,
                     users:updateState
                 }
@@ -27,4 +26,3 @@ const DataReducer = (state = initialState, action) => {
 
 }
 
-export default DataReducer;
