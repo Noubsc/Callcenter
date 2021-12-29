@@ -9,8 +9,8 @@ import {
 
 
   
-  import { Link as RouterLink } from 'react-router-dom';
-   import { styled } from '@mui/material/styles';
+import { Link as RouterLink } from 'react-router-dom';
+ import { styled } from '@mui/material/styles';
 import { Globalstyle } from 'src/fonts/GlobalStyle';
 
  
