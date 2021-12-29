@@ -7,11 +7,13 @@ import {
     TextField
   } from '@mui/material';
 
-
-  
-import { Link as RouterLink } from 'react-router-dom';
- import { styled } from '@mui/material/styles';
+import React, {useState} from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 import { Globalstyle } from 'src/fonts/GlobalStyle';
+import axios from 'axios';
+
+
 
  
  
@@ -85,6 +87,50 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
   );
   
   function Login() {
+  const navigate = useNavigate();
+    
+  const [User, setUser] = useState("sengkham");
+  const [Pwd, setPwd] = useState("123");
+  const [Error, setError] = useState("");
+  const url = 'https://waiwa-api.laoapps.com/api/v1/callcenter/';
+
+    const handleISubmit = (e) =>{
+      
+      if(User ==="sengkham" && Pwd === "123"){
+
+        const header= {
+          'Content-Type': 'application/json',
+          'Authorization': 'dba123456',
+          'Token' : 'c0bab0a1-8f1e-4735-95d2-ec362d8ce407'
+        }   
+    
+        axios.get(url.concat('default'),{headers:header})
+         .then(res => {
+            const result =  res;
+            if(result.data.status === 1 && result.data.data.isActive === true){
+            localStorage.setItem('users', JSON.stringify(result.data.data));
+            console.log('Users',result.data.data)
+            navigate('/dashboards/crypto', { replace: true });				
+            }
+            else{
+               
+                    // setErrors({ submit: res.data.data.message });
+                    setError(res.data.data.message);
+       
+            }
+          console.log('Login',res);
+         });
+        
+
+      }
+      else{
+        setError("* Please your User and Password again.");
+
+      }
+     // console.log(`user : ${ User} and ${Pwd}`);
+     
+    }
+   
   
     return (
     
@@ -106,8 +152,8 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
             >
              ລະບົບຈັດການໜ້າວຽກການຂົນສົ່ງຂອງ Rider
             </TypographyH2>
-
-            <Box
+      
+            <Box 
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -121,31 +167,56 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
                     id="usr"
                     label="ຊື່ຜູ້ໃຊ້"
                     placeholder='ຊື່ຜູ້ໃຊ້້'
-                    focused 
+                    focused       
+                    value={User}            
+                    required       
+                    error = {false}
+                    onChange= {(e) => setUser(e.target.value)}
+                   
                     />
                     <br/>
                     <TextField    
                     color='secondary'                   
                     id="pwd"
                     label="ລະຫັດ"
-                    placeholder="ລະຫັດ"  
-                    focused                  
+                    placeholder="ລະຫັດ" 
+                    type="password"
+                    value={Pwd}                 
+                    focused  
+                    required                     
+                    error = {false}     
+                   onChange = {(e) => setPwd(e.target.value)}  
                     />
                 </div>
+                <br/>
+                <TypographyH2
+              sx={{ lineHeight: 1.5, pb: 4 }}
+              variant="h4"
+              color="red"
+              fontWeight="normal"    
                
-                
-                </Box>
-
-            <br/>
-
-            <Button
+             
+            >
+             {Error}
+            </TypographyH2>
+                <Button
+                type='button'
+                onClick={handleISubmit}
+              /*
               component={RouterLink}
               to="/dashboards/crypto"
               size="large"
+              
+              */
               variant="contained"
             >
               ເຂົ້າລະບົບ
             </Button>
+                </Box>
+              
+           
+
+            
             
           
           </Grid>
@@ -155,4 +226,6 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
   }
   
   export default Login;
+  
+
   

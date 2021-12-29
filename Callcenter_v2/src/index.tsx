@@ -9,12 +9,23 @@ import { Globalstyle } from 'src/fonts/GlobalStyle';
 import 'nprogress/nprogress.css';
 import { SidebarProvider } from './contexts/SidebarContext';
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import UsersReducer from './reducer/users';
+
+const store = createStore(UsersReducer);
+
+
+
+
 ReactDOM.render(
   <HelmetProvider>
     <SidebarProvider>
       <BrowserRouter>
         <Globalstyle />
+        <Provider store={store}>
         <App />
+        </Provider>
       </BrowserRouter>
     </SidebarProvider>
   </HelmetProvider>,

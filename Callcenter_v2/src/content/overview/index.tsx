@@ -19,13 +19,13 @@ function Overview() {
   return (
     <OverviewWrapper>
       <Helmet>
-        <title>Wellcom to Waiwa Delivery</title>
+        <title>Waiwa Delivery</title>
       </Helmet>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Box display="flex" justifyContent="center" py={5} alignItems="center">
           <Logo />
         </Box>
-        <Card sx={{ p: 10, mb: 10, borderRadius: 12 }}>
+        <Card sx={{ p: 8, mb: 8, borderRadius: 12 }}>
           <Login />
         </Card>
       </Container>
