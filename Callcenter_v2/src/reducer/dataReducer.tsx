@@ -1,24 +1,19 @@
-import { ADD_TO_USER } from './dataAction';
+import  UserObject  from "./interfaceUser"
 
-const initialState={
-    user:[]
-}
 
-export function DataReducer(state = initialState, action){
 
+
+export function DataReducer(state : UserObject = null, action ) : UserObject{
+
+    
     switch(action.type){
 
-        case ADD_TO_USER : 
-        const updateState =[...state.user,action.payload];
-
-                return{
-                    ...state,
-                    users:updateState
-                }
-                
-        default:
-            return state;
-
+        case 'LOGIN' :
+            return action.payload
+        case 'LOGOUT' :
+            return action.payload
+        default: 
+            return state
 
     }
 

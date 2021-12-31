@@ -8,7 +8,9 @@ import {
   } from '@mui/material';
 
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 import { styled } from '@mui/material/styles';
 import { Globalstyle } from 'src/fonts/GlobalStyle';
 import axios from 'axios';
@@ -88,6 +90,7 @@ import axios from 'axios';
   
   function Login() {
   const navigate = useNavigate();
+  const ditpatch = useDispatch();
     
   const [User, setUser] = useState("sengkham");
   const [Pwd, setPwd] = useState("123");
@@ -108,8 +111,14 @@ import axios from 'axios';
          .then(res => {
             const result =  res;
             if(result.data.status === 1 && result.data.data.isActive === true){
-            localStorage.setItem('users', JSON.stringify(result.data.data));
-            console.log('Users',result.data.data)
+            //localStorage.setItem('users', JSON.stringify(result.data.data));         
+            console.log('Users',result.data.data);
+
+           
+            ditpatch({
+              type : 'LOGIN',
+              payload : result.data.data
+          });
             navigate('/dashboards/crypto', { replace: true });				
             }
             else{
