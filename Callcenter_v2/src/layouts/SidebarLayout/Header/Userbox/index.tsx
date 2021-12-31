@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import UserObject from 'src/reducer/interfaceUser';
 
 import {
   Avatar,
@@ -60,11 +61,16 @@ const UserBoxDescription = styled(Typography)(
 
 function HeaderUserbox() {
 
+  const  users  = useSelector((state: UserObject) => state.userData);
+ 
+
+  //console.log('Header',users.userData.name);
+
   const user =
   {
-    name: 'Catherine Pike',
-    avatar: '/static/images/avatars/1.jpg',
-    jobtitle: 'Project Manager'
+    name: users.name,
+    avatar: users.photo, // '/static/images/avatars/1.jpg',
+    jobtitle: users.memberUuid[0].role
   };
 
   const ref = useRef<any>(null);
@@ -81,7 +87,7 @@ function HeaderUserbox() {
   return (
     <>
       <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
-        <Avatar variant="rounded" alt={user.name} src={user.avatar} />
+        <Avatar variant="rounded" alt={user.name} src={'data:image/png;base64,' + user.avatar} />
         <Hidden mdDown>
           <UserBoxText>
             <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>

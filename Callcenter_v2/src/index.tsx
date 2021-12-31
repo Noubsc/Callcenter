@@ -12,6 +12,7 @@ import { SidebarProvider } from './contexts/SidebarContext';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 import rootReducer    from './reducer';
+//import  { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const store = createStore(rootReducer);

@@ -8,20 +8,16 @@ import AccountBalance from './AccountBalance';
 import Wallets from './Wallets';
 import AccountSecurity from './AccountSecurity';
 import WatchList from './WatchList';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/reducer';
+
 
 function DashboardCrypto() {
 
-  let userData = useSelector((state : RootState)=>{
-    return state.user;
-  });
   
 
   return (
     <>
       <Helmet>
-        <title>{userData.user} Crypto Dashboard</title>
+        <title> Crypto Dashboard</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
