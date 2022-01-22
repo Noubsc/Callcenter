@@ -90,7 +90,7 @@ import axios from 'axios';
   
   function Login() {
   const navigate = useNavigate();
-  const ditpatch = useDispatch();
+  const dispatch = useDispatch();
     
   const [User, setUser] = useState("sengkham");
   const [Pwd, setPwd] = useState("123");
@@ -115,7 +115,7 @@ import axios from 'axios';
             console.log('Users',result.data.data);
 
            
-            ditpatch({
+            dispatch({
               type : 'LOGIN',
               payload : result.data.data
           });

@@ -1,0 +1,211 @@
+
+
+@version = api/v1
+@h = waiwa-api.laoapps.com
+@path = callcenter
+@p = 22701
+
+
+
+
+@protocol = https://
+
+https://waiwa-api.laoapps.com/api/v1/callcenter
+// owerUuid is Uuid from userUuid
+POST  {{protocol}}{{h}}/{{version}}/{{path}}/new HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+
+{ 
+    "name":"LTM",
+    "ownerUuid":"c0bab0a1-8f1e-4735-95d2-ec362d8ce407",
+    "memberUuid": [
+      {
+        "role": "superadmin",
+        "memberUuid": "c0bab0a1-8f1e-4735-95d2-ec362d8ce407"
+      }],
+    "phonenumber":"+8562054656226"
+    
+}
+###
+GET  {{protocol}}{{h}}/{{version}}/{{path}}/default HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+
+###
+
+POST {{protocol}}{{h}}/{{version}}/{{path}}/editdefault HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+
+{
+    "name":"sengkham",
+    "ownerUuid":"c0bab0a1-8f1e-4735-95d2-ec362d8ce407",
+    "memberUuid": [
+      {
+        "role": "superadmin",
+        "memberUuid": "c0bab0a1-8f1e-4735-95d2-ec362d8ce407"
+      }
+    ],
+    "phonenumber":"+8562054656226",
+    "photo":"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"
+}
+
+###
+
+POST {{protocol}}{{h}}/{{version}}/{{path}}/editdefaultmember HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+Phonenumber:+8562055516321
+Role:superadmin
+
+
+###
+
+POST {{protocol}}{{h}}/{{version}}/{{path}}/editdefaultremovemember HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+Phonenumber:+8562097783399
+
+{
+    "name":"string",
+    "ownerUuid":"string",
+    "memberUuid":"[{memberUuid: string1;role: ERole1}]",
+    "phonenumber":"string",
+    "photo":"iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAADMElEQVR4nOzVwQnAIBQFQYXff81RUkQCOyDj1YOPnbXWPmeTRef+/3O/OyBjzh3CD95BfqICMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMO0TAAD//2Anhf4QtqobAAAAAElFTkSuQmCC"
+}
+
+###
+
+POST   {{protocol}}{{h}}/{{version}}/{{path}}/findexist HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+###
+
+
+POST   {{protocol}}{{h}}/{{version}}/{{path}}/findmemberbyphonenumber HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Phonenumber:+8562055516321
+
+###
+
+
+
+###
+POST {{protocol}}{{h}}/{{version}}/{{path}}/del/10 HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+###
+GET {{protocol}}{{h}}/{{version}}/{{path}}/selone/1 HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+###
+GET {{protocol}}{{h}}/{{version}}/{{path}}/selmany HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+###
+GET {{protocol}}{{h}}/{{version}}/{{path}}/selmanynonactive HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+###
+GET {{protocol}}{{h}}/{{version}}/{{path}}/find?q=road HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+
+###
+GET {{protocol}}{{h}}/{{version}}/{{path}}/findbyowneruuid?q=9a522396-e52d-4952-8872-8b46c95b2931&a=false HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce407
+Authorization:dba123456
+
+###
+
+POST {{protocol}}{{h}}/{{version}}/{{path}}/setactive/15 HTTP/1.1
+Content-Type: application/json
+Token:c0bab0a1-8f1e-4735-95d2-ec362d8ce40711
+Authorization:dba123456
+
+{
+    "isActive":false
+}
+
+
+
+
+
+version 1.1.0
+
+add comment on task
+add comment on rider
+add comment on callcenter
+version 1.0.0
+
+callcenter send rider a realtime invite to add to my rider by rider & callcenter
+add task by callcenter , task is base on rider ( rider has to accept task) by rider & callcenter
+modify task by callcenter
+view all riders by customer
+view all riders by riders
+view all riders by callcenter
+view your tasks base on myrider by customer
+your favorite rider by customer
+monitor tasks by customer -- retrieve realtime gps location base on active tasks from rider -- rider realtime update location
+version 0.8.9 beta
+
+register rider ( detect it is a firsttime) by rider ==> OK
+get rider info by token ==> OK
+modify rider information by rider ==> OK
+find exist driver ==>OK
+register callcener ( detect it is a firsttime) by callcenter ==> ok
+modify callcenter information by callcenter ==> ok
+find member uuid by phonenumber findmemberbyphonenumber ==> OK
+add member by callcenter ==> OK
+modify member information by callcenter ==> OK
+delete member information by callcenter ==> OK
+add myrider by callcenter. ==> OK
+modify myrider information by callcenter ==> OK
+delete myrider information by callcenter ==> OK
+set active my rider by callcenter ==> OK
+selmany by callcenter ==> OK
+selmanynonactive myrider by callcenter ==> OK
+findbyriderphonenumber myrider by callcenter ==> OK
+searchforarider myrider by callcenter ==> OK
+process flow
+
+rider 1.1. use token from usermanger 1.2. /rider/new to register a new rider 1.3. /rider/editdefault to update your info with your token 1.4. /rider/default to get your info with your token 1.5. /rider/findexist to find exist rider with your token
+
+callcenter 2.1. use token from usermanger 2.2. /callcenter/new to register a new callcenter 2.3. /callcenter/editdefault to update your info with your token 2.4. /callcenter/default to get your info with your token 2.5. /callcenter/findexist to find exist callcenter with your token 2.6. /callcenter/editdefaultremovemember to remove exist member callcenter with your token 2.7. /callcenter/editdefaultmember to edit exist member with your token
+
+myrider 3.1. /myrider/selmany 3.2. /myrider/selmanynonactive 3.3. /myrider/findbyriderphonenumber 3.4. /myrider/searchforarider 3.5. /myrider/new 3.6. /myrider/del 3.7 /myrider/selmanynonactive
+
+task
+
+myrider
+
+CONFIG SERVER:
+
+service/service.ts export const xPhone = [{phonenumber:'+8562055516321',uuid:'c0bab0a1-8f1e-4735-95d2-ec362d8ce407'}, {phonenumber:'+8562077868868',uuid:'c0bab0a1-8f1e-4735-95d2-ec362d8ce406'}, {phonenumber:'+8562097783399',uuid:'c0bab0a1-8f1e-4735-95d2-ec362d8ce405'}];
+
+docker image :
+
+docker pull node
+docker pull redis
+docker pull postgres
+DOCKER : run docker : docker-compose up -d or : docker-compose up -d --build
+
+DOCKER REDIS: docker-compose -f docker-redis.yml up -d
+
+DOCKER POSTGRES: docker-compose -f docker-postgres.yml up -d
+
+shutdown docker: docker-compose down -d

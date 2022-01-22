@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import UserObject from 'src/reducer/interfaceUser';
 
 import {
@@ -62,7 +62,9 @@ const UserBoxDescription = styled(Typography)(
 function HeaderUserbox() {
 
   const  users  = useSelector((state: UserObject) => state.userData);
- 
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //console.log('Header',users.userData.name);
 
@@ -73,6 +75,9 @@ function HeaderUserbox() {
     jobtitle: users.memberUuid[0].role
   };
 
+
+
+
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -82,6 +87,17 @@ function HeaderUserbox() {
 
   const handleClose = (): void => {
     setOpen(false);
+  };
+
+  const handleLogout = (): void =>{
+
+      
+    dispatch({
+      type : 'LOGOUT',
+      payload : null
+  });
+    navigate('/', { replace: true });	
+
   };
 
   return (
@@ -147,7 +163,7 @@ function HeaderUserbox() {
         </List>
         <Divider />
         <Box sx={{ m: 1 }}>
-          <Button color="primary" fullWidth>
+          <Button color="primary" onClick={handleLogout} fullWidth>
             <LockOpenTwoToneIcon sx={{ mr: 1 }} />
             Sign out
           </Button>
